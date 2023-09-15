@@ -34,7 +34,7 @@ pipeline{
     post {
         success{
             script{
-                slackSend(channel: "wanjiku_ip", message: "Pipeline successful")
+                slackSend(channel: "wanjiku_ip1", message: "Pipeline successful")
             }
            
         }
