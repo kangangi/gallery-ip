@@ -31,5 +31,14 @@ pipeline{
             }
         }
     }
+    post {
+        success{
+            script{
+                slackSend(channel: "wanjiku_ip", message: "Pipeline successful")
+            }
+           
+        }
+    }
+    
 
 }
