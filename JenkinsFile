@@ -34,8 +34,15 @@ pipeline{
     post {
         success{
             script{
-                slackSend(channel: "wanjiku_ip1", message: "Pipeline successful")
-            }
+                def buildNumber = currentBuild.number
+                def buildTime = currentBuild.startTimeInMillis
+
+                def formattedBuildTime = new Date(buildTime).format('yyyy-MM-dd HH:mm:ss')
+
+                def message = "Pipeline successful - Build #${buildNumber} started at ${formattedBuildTime}"
+
+                slackSend(channel: "wanjiku_ip1", message: message)
+                }
            
         }
     }
