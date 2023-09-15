@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+
+    tools {nodejs "node"}
+    environment {
+        MONGODB_URI='mongodb+srv://kangangi:adminpass@cluster0.jsqhtza.mongodb.net/?retryWrites=true&w=majority'
+    }
+
+    stages {
+        stage('Clone Repository'){
+            steps{
+                git 'https://github.com/kangangi/gallery-ip.git'
+            }
+        }
+        stage("Build"){
+            steps{
+                sh 'npm install'
+                sh 'npm run'
+            }
+        }
+        stage("Test"){
+            steps{
+                sh 'npm test'
+            }
+        }
+    }
+
+}
