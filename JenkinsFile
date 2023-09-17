@@ -42,7 +42,18 @@ pipeline{
                 def message = "Pipeline successful - Build #${buildNumber} started at ${formattedBuildTime}"
 
                 slackSend(channel: "wanjiku_ip1", message: message)
-                }
+            }
+            
+           
+        }
+        failure{
+            script{
+                def buildNumber = currentBuild.number
+
+                def message = "Pipeline failed - Build #${buildNumber}"
+
+                slackSend(channel: "wanjiku_ip1", message: message)
+            }
            
         }
     }
